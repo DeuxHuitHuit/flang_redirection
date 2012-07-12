@@ -12,7 +12,7 @@
 	
 	Class eventflang_redirect extends Event {
 
-		const ROOTELEMENT = 'language-redirect';
+		const ROOTELEMENT = 'flang-redirect';
 		
 		public static function about(){
 			return array(
@@ -59,9 +59,11 @@
 				// if we have a url language and this lang is valid
 				// no redirect, set current language and region in cookie
 				if ($hasUrlLanguage && FLang::validateLangCode($url_language_code)) {
-						
+					
+					// set as the current language
 					FLang::setLangCode($url_language_code);
-						
+					
+					// save it in a cookie
 					$Cookie = new Cookie(__SYM_COOKIE_PREFIX_ . 'language-redirect', TWO_WEEKS, __SYM_COOKIE_PATH__);
 					$Cookie->set('language', FLang::getLang());
 					$Cookie->set('region', FLang::getReg());
@@ -75,6 +77,8 @@
 					// get browser value
 					$browser_languages = $this->getBrowserLanguages();
 					$browser_language = null;
+					$in_browser_languages = false;
+					
 					foreach ($browser_languages as $language) {
 						if (FLang::validateLangCode($language)) {
 							$in_browser_languages = true;
@@ -103,9 +107,9 @@
 				}
 				
 				// add XML data for this event
-				$result = new XMLElement('language-redirect');
-				$current_language_xml = new XMLElement('current-language', $all_languages[$current_language_code] ? $all_languages[$current_language_code] : $current_language_code);
-				$current_language_xml->setAttribute('handle', $current_language_code);
+				$result = new XMLElement(self::ROOTELEMENT);
+				$current_language_xml = new XMLElement('current-language', $all_languages[FLang::getLang()]);
+				$current_language_xml->setAttribute('handle', FLang::getLang());
 				$result->appendChild($current_language_xml);
 
 				$supported_languages_xml = new XMLElement('supported-languages');
