@@ -12,8 +12,8 @@ Version 1.0
 
 ### INSTALLATION ###
 
-- Install (frontend_localisation)[https://github.com/vlad-ghita/frontend_localisation/]
-- Install (flang_detection_gtlds)[https://github.com/vlad-ghita/flang_detection_gtlds/]
+- Install [frontend_localisation](https://github.com/vlad-ghita/frontend_localisation/)
+- Install [flang_detection_gtlds](https://github.com/vlad-ghita/flang_detection_gtlds/)
 - Unzip the flang_redirection.zip file
 - (re)Name the folder **flang_redirection**
 - Put into the extension directory
@@ -28,7 +28,8 @@ You just have to link the event to all pages you want.
 
 ## Credits
 
-This extension is a rewrite of an existing extension that worked great in Symphony 2.2.x, (language_redirect)[https://github.com/klaftertief/language_redirect].
-Since multilingual support is now offered thought a new extensions, I wanted to port the existing features of the 
-language redirect in this new environnement. But I wanted to say thanks to @klaftertief for his nice work and
-@vlad-ghita for unifying the localisation support.
+This extension is a rewrite of an existing extension that worked great in Symphony 2.2.x, [language_redirect](https://github.com/klaftertief/language_redirect).
+Since multilingual support is now offered thought a new extension, I wanted to port the existing features of the 
+language redirect in this new environnement.
+
+I wanted to say thanks to @klaftertief for his nice work and @vlad-ghita for unifying the localisation support.
