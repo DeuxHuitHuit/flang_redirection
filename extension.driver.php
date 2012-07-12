@@ -9,15 +9,15 @@
 	Class extension_flang_redirection extends Extension{
 
 		public function install(){
-
+			return true;
 		}
 
 		public function update($previousVersion) {
-
+			return true;
 		}
 
 		public function uninstall(){
-
+			return true;
 		}
 
 	}
