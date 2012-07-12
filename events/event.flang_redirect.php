@@ -72,6 +72,7 @@
 				// No url language found
 				// redirect to language-code depending on cookie or browser settings
 				else {
+					// get current path
 					$current_path = $hasUrlLanguage ? $this->_env['param']['current-path'] : substr($this->_env['param']['current-path'],strlen($current_language_code)+1);
 					
 					// get browser value
