@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="static_section" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Frontend Language Redirection</name>
+	<description>Adds redirection capabilities to Frontend Localisation Extension</description>
+	<repo type="github">https://github.com/DeuxHuitHuit/flang_redirection</repo>
+	<url type="discuss">https://github.com/DeuxHuitHuit/flang_redirection/wiki</url>
+	<url type="issues">https://github.com/DeuxHuitHuit/flang_redirection/issues</url>
+	<types>
+		<type>Event</type>
+		<type>Redirection</type>
+		<type>Localisation</type>
+	</types>
+	<authors>
+		<author>
+			<name github="DeuxHuitHuit" symphony="" twitter="DeuxHuitHuit">Deux Huit Huit</name>
+			<website>http://www.deuxhuithuit.com</website>
+		</author>
+	</authors>
+	<releases>
+		<release version="1.0" date="2012-07-12" min="2.3">
+		- Initial release
+		</release>
+	</releases>
+</extension>
