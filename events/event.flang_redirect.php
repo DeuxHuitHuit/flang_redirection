@@ -75,6 +75,9 @@
 					// get current path
 					$current_path = $hasUrlLanguage ? $this->_env['param']['current-path'] : substr($this->_env['param']['current-path'],strlen($current_language_code)+1);
 					
+					// get current query string from Symphony Frontend Page object
+					$current_query_string = Frontend::Page()->_param['current-query-string'];
+					
 					// get browser value
 					$browser_languages = $this->getBrowserLanguages();
 					$browser_language = null;
@@ -102,8 +105,8 @@
 						$language_code = $default_language;
 					}
 					
-					// redirect and exit
-					redirect($this->_env['param']['root'].'/'.$language_code.'/'.$current_path);
+					// redirect (with querystring) and exit
+					redirect($this->_env['param']['root'].'/'.$language_code.'/'.$current_path.$current_query_string);
 					die();
 				}
 				
