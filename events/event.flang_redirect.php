@@ -47,8 +47,8 @@
 			$default_language = FLang::getMainLang();
 			
 			// url language
-			$url_language = General::sanitize($_REQUEST['language']);
-			$url_region = General::sanitize($_REQUEST['region']);
+			$url_language = General::sanitize($_REQUEST['fl-language']);
+			$url_region = General::sanitize($_REQUEST['fl-region']);
 			$url_language_code = FLang::buildLanguageCode($url_language, $url_region);
 			
 			$hasUrlLanguage = isset($url_language_code) && strlen($url_language_code) > 0;
@@ -74,6 +74,9 @@
 				else {
 					// get current path
 					$current_path = $hasUrlLanguage ? $this->_env['param']['current-path'] : substr($this->_env['param']['current-path'],strlen($current_language_code)+1);
+					
+					// get current query string from Symphony Frontend Page object
+					$current_query_string = Frontend::Page()->_param['current-query-string'];
 					
 					// get browser value
 					$browser_languages = $this->getBrowserLanguages();
@@ -102,8 +105,8 @@
 						$language_code = $default_language;
 					}
 					
-					// redirect and exit
-					redirect($this->_env['param']['root'].'/'.$language_code.'/'.$current_path);
+					// redirect (with querystring) and exit
+					redirect($this->_env['param']['root'].'/'.$language_code.'/'.$current_path.$current_query_string);
 					die();
 				}
 				
