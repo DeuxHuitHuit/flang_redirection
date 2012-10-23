@@ -18,12 +18,12 @@
 			return array(
 				'name' => __('Frontend Localisation Redirect'),
 				'author' => array(
-							array(
-								'name' => 'Deux Huit Huit',
-								'website' => 'http://www.deuxhuithuit.com',
-								'email' => 'open-source (at) deuxhuithuit (dot) com'
-							),
+						array(
+							'name' => 'Deux Huit Huit',
+							'website' => 'http://www.deuxhuithuit.com',
+							'email' => 'open-source (at) deuxhuithuit (dot) com'
 						),
+					),
 				'version' => '1.0',
 				'release-date' => '2012-07-12',
 				'trigger-condition' => '');
@@ -106,7 +106,13 @@
 					}
 					
 					// redirect (with querystring) and exit
-					redirect($this->_env['param']['root'].'/'.$language_code.'/'.$current_path.$current_query_string);
+					$new_url = /*$this->_env['param']['root'].*/ '/'.$language_code.'/'.$current_path;
+					
+					// if query string is longer than 1 (more thant only the ? char)
+					if (!empty($current_query_string) && strlen($current_query_string) > 1) {
+						$new_url .= $current_query_string;
+					}
+					redirect($new_url);
 					die();
 				}
 				
