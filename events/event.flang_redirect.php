@@ -24,8 +24,8 @@
 							'email' => 'open-source (at) deuxhuithuit (dot) com'
 						),
 					),
-				'version' => '1.0',
-				'release-date' => '2012-07-12',
+				'version' => '1.1',
+				'release-date' => '2012-11-13',
 				'trigger-condition' => '');
 		}
 
@@ -40,21 +40,22 @@
 		protected function __trigger(){
 			// all supported languages
 			$supported_language_codes = FLang::getLangs();
-			// all languages known
-			$all_languages = FLang::getAllLangs();
 
-			// main (default) language
-			$default_language = FLang::getMainLang();
-			
-			// url language
-			$url_language = General::sanitize($_REQUEST['fl-language']);
-			$url_region = General::sanitize($_REQUEST['fl-region']);
-			$url_language_code = FLang::buildLanguageCode($url_language, $url_region);
-			
-			$hasUrlLanguage = isset($url_language_code) && strlen($url_language_code) > 0;
-			
 			// only do something when there is a set of supported languages defined
 			if ( !empty($supported_language_codes)) {
+				
+				// all languages known
+				$all_languages = FLang::getAllLangs();
+				
+				// main (default) language
+				$default_language = FLang::getMainLang();
+					
+				// url language
+				$url_language =  isset($_REQUEST['fl-language']) ? General::sanitize($_REQUEST['fl-language']) : '';
+				$url_region = isset($_REQUEST['fl-region']) ? General::sanitize($_REQUEST['fl-region']) : '';
+				$url_language_code = FLang::buildLanguageCode($url_language, $url_region);
+					
+				$hasUrlLanguage = strlen($url_language_code) > 1;
 				
 				// if we have a url language and this lang is valid
 				// no redirect, set current language and region in cookie
@@ -64,19 +65,22 @@
 					FLang::setLangCode($url_language_code);
 					
 					// save it in a cookie
-					$Cookie = new Cookie(__SYM_COOKIE_PREFIX_ . 'language-redirect', TWO_WEEKS, __SYM_COOKIE_PATH__);
-					$Cookie->set('language', FLang::getLang());
-					$Cookie->set('region', FLang::getReg());
+					setcookie('flang-redirect', $url_language_code, mktime() + TWO_WEEKS, '/', '.'.Session::getDomain());
 				}
 				
-				// No url language found
+				// No url language found in url
 				// redirect to language-code depending on cookie or browser settings
 				else {
+					
 					// get current path
-					$current_path = $hasUrlLanguage ? $this->_env['param']['current-path'] : substr($this->_env['param']['current-path'],strlen($current_language_code)+1);
+					$current_path = $hasUrlLanguage ? Frontend::Page()->_param['current-path'] : substr(Frontend::Page()->_param['current-path'],strlen($current_language_code)+1);
 					
 					// get current query string from Symphony Frontend Page object
 					$current_query_string = Frontend::Page()->_param['current-query-string'];
+					
+					// un-cdata the querystring
+					$current_query_string = str_replace($current_query_string, '<![CDATA[', '');
+					$current_query_string = str_replace($current_query_string, ']]>',       '');
 					
 					// get browser value
 					$browser_languages = $this->getBrowserLanguages();
@@ -92,13 +96,12 @@
 					}
 					
 					// get the cookie value
-					$Cookie = new Cookie(__SYM_COOKIE_PREFIX_ . 'language-redirect', TWO_WEEKS, __SYM_COOKIE_PATH__);
-					$cookie_language_code = $Cookie->get('language');
+					$cookie_language_code = General::sanitize($_COOKIE['flang-redirect']);
 					
 					if (strlen($cookie_language_code) > 0) {
-						$language_code = $Cookie->get('region') ? $cookie_language_code.'-'.$Cookie->get('region') : $cookie_language_code;
+						$language_code = $cookie_language_code;
 					}
-					elseif ($in_browser_languages) {
+					else if ($in_browser_languages) {
 						$language_code = $browser_language;
 					}
 					else { // use default
@@ -106,12 +109,20 @@
 					}
 					
 					// redirect (with querystring) and exit
-					$new_url = /*$this->_env['param']['root'].*/ '/'.$language_code.'/'.$current_path;
+					$new_url = '/'.$language_code.'/'.$current_path;
 					
-					// if query string is longer than 1 (more thant only the ? char)
+					if (substr($new_url, -1)!=='/') { 
+						$new_url .= '/';
+					}
+					
+					//var_dump($current_query_string);
+					
+					// if query string is longer than 1 (more than only the ? char)
 					if (!empty($current_query_string) && strlen($current_query_string) > 1) {
 						$new_url .= $current_query_string;
 					}
+					
+					//var_dump($new_url);
 					redirect($new_url);
 					die();
 				}
@@ -131,7 +142,8 @@
 				$result->appendChild($supported_languages_xml);
 
 				return $result;
-			}
+				
+			} // end no language set
 
 			return false;
 		}
