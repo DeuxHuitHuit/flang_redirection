@@ -79,8 +79,8 @@
 					$current_query_string = Frontend::Page()->_param['current-query-string'];
 					
 					// un-cdata the querystring
-					$current_query_string = str_replace($current_query_string, '<![CDATA[', '');
-					$current_query_string = str_replace($current_query_string, ']]>',       '');
+					$current_query_string = str_replace('<![CDATA[', '', $current_query_string);
+					$current_query_string = str_replace(']]>',       '', $current_query_string);
 					
 					// get browser value
 					$browser_languages = $this->getBrowserLanguages();
