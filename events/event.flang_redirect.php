@@ -123,7 +123,9 @@
 					}
 					
 					//var_dump($new_url);
-					redirect($new_url);
+					$root=Frontend::Page()->_param['root'];
+					header("Location: $root$new_url");
+					//redirect($new_url);
 					die();
 				}
 				
