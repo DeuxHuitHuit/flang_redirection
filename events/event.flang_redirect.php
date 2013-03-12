@@ -123,7 +123,9 @@
 					}
 					
 					//var_dump($new_url);
-					redirect($new_url);
+					// make sur the domain name is present
+					// fixes #4
+					redirect(Frontend::Page()->_param['root'].$new_url);
 					die();
 				}
 				
@@ -140,6 +142,9 @@
 					$supported_languages_xml->appendChild($language_code);
 				}
 				$result->appendChild($supported_languages_xml);
+				
+				// param output - this allow DS filtering
+				Frontend::Page()->_param['current-language'] = FLang::getLang();
 
 				return $result;
 				
