@@ -21,6 +21,9 @@
 		<dependency version="1.1">flang_detection_gtlds</dependency>
 	</dependencies>
 	<releases>
+		<release version="1.2" date="2014-04-15" min="2.3">
+		- Fixed issue #6 (thanks @twiro)
+		</release>
 		<release version="1.1" date="2012-11-13" min="2.3">
 		- Update for Symphony 2.3.1 (For un-cdata the querystring)
 		- Use REAL cookies (Since the cookie class does not do it)
