@@ -21,7 +21,10 @@
 		<dependency version="1.1">flang_detection_gtlds</dependency>
 	</dependencies>
 	<releases>
-		<release version="1.2" date="2014-04-15" min="2.3">
+		<release version="1.2.1" date="2014-08-27" min="2.3" max="2.4">
+		- Fixed bug when no '?' were presented in the reported query string value
+		</release>
+		<release version="1.2" date="2014-04-15" min="2.3" max="2.4">
 		- Fixed issue #6 (thanks @twiro)
 		</release>
 		<release version="1.1" date="2012-11-13" min="2.3">
