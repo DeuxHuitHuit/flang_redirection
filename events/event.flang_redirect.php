@@ -1,6 +1,6 @@
 <?php
 	/*
-	Copyight: Deux Huit Huit 2012
+	Copyight: Deux Huit Huit 2012-2014
 	License: MIT, see the LICENCE file
 	 * 
 	This class is mostly a copy of https://github.com/klaftertief/language_redirect/blob/master/events/event.language_redirect.php
@@ -8,26 +8,11 @@
 	
 	if(!defined("__IN_SYMPHONY__")) die("<h2>Error</h2><p>You cannot directly access this file</p>");
 
-	require_once(EXTENSIONS.'/frontend_localisation/lib/class.FLang.php');	
+	require_once(EXTENSIONS.'/frontend_localisation/lib/class.FLang.php');
 	
 	Class eventflang_redirect extends Event {
 
 		const ROOTELEMENT = 'flang-redirect';
-		
-		public static function about(){
-			return array(
-				'name' => __('Frontend Localisation Redirect'),
-				'author' => array(
-						array(
-							'name' => 'Deux Huit Huit',
-							'website' => 'http://www.deuxhuithuit.com',
-							'email' => 'open-source (at) deuxhuithuit (dot) com'
-						),
-					),
-				'version' => '1.1',
-				'release-date' => '2012-11-13',
-				'trigger-condition' => '');
-		}
 
 		public function load(){
 			return $this->__trigger();
@@ -122,8 +107,12 @@
 					//var_dump($current_query_string);
 					
 					// if query string is longer than 1 (more than only the ? char)
-					if (!empty($current_query_string) && strlen($current_query_string) > 1) {
-						$new_url .= $current_query_string;
+					if (!empty($current_query_string)) {
+						if ($current_query_string[0] === '?' && strlen($current_query_string) > 1) {
+							$new_url .= $current_query_string;
+						} else if (strlen($current_query_string) > 0) {
+							$new_url .= '?' . $current_query_string;
+						}
 					}
 					
 					//var_dump($new_url);
