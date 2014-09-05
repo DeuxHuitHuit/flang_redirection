@@ -14,6 +14,21 @@
 
 		const ROOTELEMENT = 'flang-redirect';
 
+		public static function about(){
+			return array(
+				'name' => __('Frontend Localisation Redirect'),
+				'author' => array(
+						array(
+							'name' => 'Deux Huit Huit',
+							'website' => 'http://www.deuxhuithuit.com',
+							'email' => 'open-source (at) deuxhuithuit (dot) com'
+						),
+					),
+				'version' => '1.1',
+				'release-date' => '2012-11-13',
+				'trigger-condition' => '');
+		}
+
 		public function load(){
 			return $this->__trigger();
 		}
