@@ -21,6 +21,11 @@
 		<dependency version="1.1">flang_detection_gtlds</dependency>
 	</dependencies>
 	<releases>
+		<release version="1.2.3" date="2014-09-10" min="2.3" max="2.4">
+		- Fixed the event author
+		- Early exit when no default language is found
+		- Removed two notice warnings
+		</release>
 		<release version="1.2.2" date="2014-09-04" min="2.3" max="2.4">
 		- Fixed a regression bug (#7): redirect event's about method has been deleted.
 		</release>
