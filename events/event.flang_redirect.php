@@ -18,11 +18,9 @@
 			return array(
 				'name' => __('Frontend Localisation Redirect'),
 				'author' => array(
-						array(
-							'name' => 'Deux Huit Huit',
-							'website' => 'http://www.deuxhuithuit.com',
-							'email' => 'open-source (at) deuxhuithuit (dot) com'
-						),
+						'name' => 'Deux Huit Huit',
+						'website' => 'http://www.deuxhuithuit.com',
+						'email' => 'open-source (at) deuxhuithuit (dot) com'
 					),
 				'version' => '1.1',
 				'release-date' => '2012-11-13',
@@ -49,7 +47,12 @@
 				
 				// main (default) language
 				$default_language = FLang::getMainLang();
-					
+				
+				// exit early if no default is found
+				if (empty($default_language)) {
+					return;
+				}
+				
 				// url language
 				$url_language =  isset($_REQUEST['fl-language']) ? General::sanitize($_REQUEST['fl-language']) : '';
 				$url_region = isset($_REQUEST['fl-region']) ? General::sanitize($_REQUEST['fl-region']) : '';
@@ -119,8 +122,6 @@
 						$new_url .= '/';
 					}
 					
-					//var_dump($current_query_string);
-					
 					// if query string is longer than 1 (more than only the ? char)
 					if (!empty($current_query_string)) {
 						if ($current_query_string[0] === '?' && strlen($current_query_string) > 1) {
@@ -130,11 +131,10 @@
 						}
 					}
 					
-					//var_dump($new_url);
-					// make sur the domain name is present
+					// make sure the domain name is present
 					// fixes #4
 					redirect(Frontend::Page()->_param['root'].$new_url);
-					die();
+					return true;
 				}
 				
 				// add XML data for this event
