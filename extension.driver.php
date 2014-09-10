@@ -12,7 +12,7 @@
 			return true;
 		}
 
-		public function update($previousVersion) {
+		public function update($previousVersion=false) {
 			return true;
 		}
 

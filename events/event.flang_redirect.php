@@ -103,7 +103,7 @@
 					}
 					
 					// get the cookie value
-					$cookie_language_code = General::sanitize($_COOKIE['flang-redirect']);
+					$cookie_language_code = isset($_COOKIE['flang-redirect']) ? General::sanitize($_COOKIE['flang-redirect']) : null;
 					
 					if (strlen($cookie_language_code) > 0) {
 						$language_code = $cookie_language_code;
