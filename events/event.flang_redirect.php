@@ -22,8 +22,8 @@
 						'website' => 'http://www.deuxhuithuit.com',
 						'email' => 'open-source (at) deuxhuithuit (dot) com'
 					),
-				'version' => '1.1',
-				'release-date' => '2012-11-13',
+				'version' => '1.2.4',
+				'release-date' => '2014-09-24',
 				'trigger-condition' => '');
 		}
 
@@ -36,6 +36,11 @@
 		}
 
 		protected function __trigger(){
+			// Abort if the page is in an erroneous state
+			if (Frontend::instance()->getException() != null) {
+				return;
+			}
+
 			// all supported languages
 			$supported_language_codes = FLang::getLangs();
 

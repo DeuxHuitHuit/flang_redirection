@@ -21,6 +21,10 @@
 		<dependency version="1.1">flang_detection_gtlds</dependency>
 	</dependencies>
 	<releases>
+		<release version="1.2.4" date="2014-09-24" min="2.3" max="2.5.1">
+		- Fixed a bug when the event was firing on the 404. The solution is to
+		never fire the event if the page is in an erroneous state.
+		</release>
 		<release version="1.2.3" date="2014-09-10" min="2.3" max="2.4">
 		- Fixed the event author
 		- Early exit when no default language is found
