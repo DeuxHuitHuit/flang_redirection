@@ -1,7 +1,7 @@
 # Frontend Localisation Redirection
 
-Version 1.2.3    
-<http://www.deuxhuithuit.com>
+Version 1.2.x    
+<https://deuxhuithuit.com>
 
 #### Adds redirection capabilities to Frontend Localisation Extension
 

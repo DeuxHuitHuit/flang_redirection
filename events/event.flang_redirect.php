@@ -19,12 +19,13 @@
 				'name' => __('Frontend Localisation Redirect'),
 				'author' => array(
 						'name' => 'Deux Huit Huit',
-						'website' => 'http://www.deuxhuithuit.com',
+						'website' => 'https://deuxhuithuit.com',
 						'email' => 'open-source (at) deuxhuithuit (dot) com'
 					),
-				'version' => '1.2.4',
-				'release-date' => '2014-09-24',
-				'trigger-condition' => '');
+				'version' => '1.2.5',
+				'release-date' => '2016-03-07',
+				'trigger-condition' => ''
+			);
 		}
 
 		public function load(){
