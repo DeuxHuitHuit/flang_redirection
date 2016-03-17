@@ -28,8 +28,16 @@
 			);
 		}
 
-		public function load(){
-			return $this->__trigger();
+		public function load()
+		{
+			try {
+				return $this->__trigger();
+			}
+			catch (Exception $ex) {
+				if (Symphony::Log()) {
+					Symphony::Log()->pushExceptionToLog($ex, true);
+				}
+			}
 		}
 
 		public static function documentation(){
