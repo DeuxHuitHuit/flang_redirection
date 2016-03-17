@@ -97,15 +97,22 @@
 					$in_browser_languages = false;
 					
 					foreach ($browser_languages as $language) {
-						// extract language bits (Fixing #6)
-						$language_bits = FLang::extractLanguageBits($language);
-						$language_code = $language_bits[0];
-						// check if language code is a valid symphony language
-						if (FLang::validateLangCode($language_code)) {
-							$in_browser_languages = true;
-							$browser_language = $language_code;
-							break;
-						};
+						// wrap extracting since it may throw
+						try {
+							// extract language bits (Fixing #6)
+							$language_bits = FLang::extractLanguageBits($language);
+							$language_code = $language_bits[0];
+							// check if language code is a valid symphony language
+							if (FLang::validateLangCode($language_code)) {
+								$in_browser_languages = true;
+								$browser_language = $language_code;
+								break;
+							};
+						}
+						catch (Exception $ex) {
+							// ignore
+							continue;
+						}
 					}
 					
 					// get the cookie value
