@@ -23,8 +23,8 @@
 						'website' => 'https://deuxhuithuit.com',
 						'email' => 'open-source (at) deuxhuithuit (dot) com'
 					),
-				'version' => '1.2.5',
-				'release-date' => '2016-03-07',
+				'version' => '1.2.6',
+				'release-date' => '2016-03-17',
 				'trigger-condition' => ''
 			);
 		}

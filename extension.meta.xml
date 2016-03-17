@@ -21,6 +21,9 @@
 		<dependency version="1.1">flang_detection_gtlds</dependency>
 	</dependencies>
 	<releases>
+		<release version="1.2.6" date="2016-03-17" min="2.3" max="2.x.x">
+		- Prevent crash when parsing browser languages
+		</release>
 		<release version="1.2.5" date="2016-03-07" min="2.3" max="2.x.x">
 		- Updated compatibility info
 		</release>
