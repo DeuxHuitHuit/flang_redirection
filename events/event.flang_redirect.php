@@ -74,7 +74,7 @@
 				$url_language =  isset($_REQUEST['fl-language']) ? General::sanitize($_REQUEST['fl-language']) : '';
 				$url_region = isset($_REQUEST['fl-region']) ? General::sanitize($_REQUEST['fl-region']) : '';
 				$url_language_code = FLang::buildLanguageCode($url_language, $url_region);
-					
+				
 				$hasUrlLanguage = strlen($url_language_code) > 1;
 				
 				// if we have a url language and this lang is valid
@@ -85,7 +85,7 @@
 					FLang::setLangCode($url_language_code);
 					
 					// save it in a cookie
-					setcookie('flang-redirect', $url_language_code, mktime() + TWO_WEEKS, '/', '.'.Session::getDomain());
+					setcookie('flang-redirect', $url_language_code, time() + TWO_WEEKS, '/', '.'.Session::getDomain());
 				}
 				
 				// No url language found in url
