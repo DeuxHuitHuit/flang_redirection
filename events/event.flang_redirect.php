@@ -1,6 +1,6 @@
 <?php
 	/*
-	Copyight: Deux Huit Huit 2012-2014
+	Copyight: Deux Huit Huit 2012-2016
 	License: MIT, see the LICENCE file
 	 * 
 	This class is mostly a copy of https://github.com/klaftertief/language_redirect/blob/master/events/event.language_redirect.php
@@ -93,7 +93,7 @@
 				else {
 					
 					// get current path
-					$current_path = $hasUrlLanguage ? Frontend::Page()->_param['current-path'] : substr(Frontend::Page()->_param['current-path'],strlen($current_language_code)+1);
+					$current_path = $hasUrlLanguage ? Frontend::Page()->_param['current-path'] : substr(Frontend::Page()->_param['current-path'], strlen($current_language_code) + 1);
 					
 					// get current query string from Symphony Frontend Page object
 					$current_query_string = Frontend::Page()->_param['current-query-string'];
@@ -140,9 +140,9 @@
 					}
 					
 					// redirect (with querystring) and exit
-					$new_url = '/'.$language_code.'/'.$current_path;
+					$new_url = '/' . $language_code . '/' . $current_path;
 					
-					if (substr($new_url, -1)!=='/') { 
+					if (substr($new_url, -1) !== '/') {
 						$new_url .= '/';
 					}
 					
@@ -157,7 +157,7 @@
 					
 					// make sure the domain name is present
 					// fixes #4
-					redirect(Frontend::Page()->_param['root'].$new_url);
+					redirect(Frontend::Page()->_param['root'] . $new_url);
 					return true;
 				}
 				
@@ -168,7 +168,7 @@
 				$result->appendChild($current_language_xml);
 
 				$supported_languages_xml = new XMLElement('supported-languages');
-				foreach($supported_language_codes as $language) {
+				foreach ($supported_language_codes as $language) {
 					$language_code = new XMLElement('item', $all_languages[$language] ? $all_languages[$language] : $language);
 					$language_code->setAttribute('handle', $language);
 					$supported_languages_xml->appendChild($language_code);
