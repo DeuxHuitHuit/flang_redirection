@@ -90,7 +90,13 @@
 					FLang::setLangCode($url_language_code);
 					
 					// save it in a cookie
-					setcookie('flang-redirect', $url_language_code, time() + TWO_WEEKS, '/', '.'.Session::getDomain());
+					setcookie(
+						'flang-redirect',
+						$url_language_code,
+						time() + TWO_WEEKS,
+						'/',
+						'.' . Session::getDomain()
+					);
 				}
 				
 				// No url language found in url
