@@ -69,6 +69,8 @@
 				
 				// main (default) language
 				$default_language = FLang::getMainLang();
+				// main (default) region
+				$default_region = FLang::getMainReg();
 				
 				// exit early if no default is found
 				if (empty($default_language)) {
@@ -128,6 +130,7 @@
 							if (FLang::validateLangCode($language_code)) {
 								$in_browser_languages = true;
 								$browser_language = $language_code;
+								$browser_region = isset($language_bits[1]) && !empty($default_region) ? $language_bits[1] : null;
 								break;
 							};
 						}
@@ -139,6 +142,7 @@
 					
 					// get the cookie value
 					$cookie_language_code = isset($_COOKIE['flang-redirect']) ? General::sanitize($_COOKIE['flang-redirect']) : null;
+					$cookie_region = null;
 					// validate it
 					try {
 						$cookie_bits = FLang::extractLanguageBits($cookie_language_code);
@@ -146,6 +150,7 @@
 							throw new Exception('Invalid cookie lang: ' . $cookie_language_code);
 						}
 						$cookie_language_code = $cookie_bits[0];
+						$cookie_region = isset($cookie_bits[1]) && !empty($default_region) ? $cookie_bits[1] : null;
 					}
 					catch (Exception $ex) {
 						// ignore
@@ -154,13 +159,13 @@
 					}
 
 					if (strlen($cookie_language_code) > 0) {
-						$language_code = $cookie_language_code;
+						$language_code = FLang::buildLanguageCode($cookie_language_code, $cookie_region);
 					}
 					else if ($in_browser_languages) {
-						$language_code = $browser_language;
+						$language_code = FLang::buildLanguageCode($browser_language, $browser_region);
 					}
-					else { // use default
-						$language_code = $default_language;
+					else {
+						$language_code = FLang::buildLanguageCode($default_language, $default_region);
 					}
 					
 					// redirect (with querystring) and exit
