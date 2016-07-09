@@ -240,7 +240,7 @@
 				}
 				$list = explode(',', $list);
 				foreach ($list as $lang) {
-					$languages[$lang] = $priority;
+					$languages[strtolower($lang)] = $priority;
 					$priority -= 0.000000001;
 				}
 			}
