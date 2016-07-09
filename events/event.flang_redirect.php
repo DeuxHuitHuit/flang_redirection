@@ -84,7 +84,7 @@
 				
 				// if we have a url language and this lang is valid
 				// no redirect, set current language and region in cookie
-				if ($hasUrlLanguage && FLang::validateLangCode($url_language_code)) {
+				if ($hasUrlLanguage && FLang::validateLangCode($url_language)) {
 					
 					// set as the current language
 					FLang::setLangCode($url_language_code);
