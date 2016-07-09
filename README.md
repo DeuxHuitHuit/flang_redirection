@@ -1,20 +1,20 @@
 # Frontend Localisation Redirection
 
-Version 1.2.x    
+Version 2.0.x    
 <https://deuxhuithuit.com>
 
 #### Adds redirection capabilities to Frontend Localisation Extension
 
 ## Requierments
 
-- Symphony CMS version 2.3 and up (as of the day of the last release of this extension)
-- Frontend localisation extension version 1.7
-- FLang detection gtlds extension version 1.1
+- Symphony CMS version 2.5 and up (as of the day of the last release of this extension)
+- Frontend localisation extension version 2.7.0
+- FLang detection gtlds extension version 2.0.0
 
 ## Installation
 
-- Install [frontend_localisation](https://github.com/vlad-ghita/frontend_localisation/)
-- Install [flang_detection_gtlds](https://github.com/vlad-ghita/flang_detection_gtlds/)
+- Install [frontend_localisation](https://github.com/DeuxHuitHuit/frontend_localisation/)
+- Install [flang_detection_gtlds](https://github.com/DeuxHuitHuit/flang_detection_gtlds/)
 - Unzip the flang_redirection.zip file
 - (re)Name the folder **flang_redirection**
 - Put into the extension directory
