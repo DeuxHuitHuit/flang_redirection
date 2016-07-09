@@ -139,7 +139,20 @@
 					
 					// get the cookie value
 					$cookie_language_code = isset($_COOKIE['flang-redirect']) ? General::sanitize($_COOKIE['flang-redirect']) : null;
-					
+					// validate it
+					try {
+						$cookie_bits = FLang::extractLanguageBits($cookie_language_code);
+						if (!FLang::validateLangCode($cookie_bits[0])) {
+							throw new Exception('Invalid cookie lang: ' . $cookie_language_code);
+						}
+						$cookie_language_code = $cookie_bits[0];
+					}
+					catch (Exception $ex) {
+						// ignore
+						$cookie_language_code = null;
+						Symphony::Log()->pushExceptionToLog($ex, true);
+					}
+
 					if (strlen($cookie_language_code) > 0) {
 						$language_code = $cookie_language_code;
 					}
