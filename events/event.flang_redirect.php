@@ -48,6 +48,11 @@
 
 		protected function __trigger()
 		{
+			// Abort if frontend does not exists
+			if (!class_exists('Frontend', false)) {
+				return;
+			}
+
 			// Abort if the page is in an erroneous state
 			if (Frontend::instance()->getException() != null) {
 				return;
