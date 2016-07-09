@@ -80,7 +80,7 @@
 				$url_region = isset($_REQUEST['fl-region']) ? General::sanitize($_REQUEST['fl-region']) : '';
 				$url_language_code = FLang::buildLanguageCode($url_language, $url_region);
 				
-				$hasUrlLanguage = strlen($url_language_code) > 1;
+				$hasUrlLanguage = General::strlen($url_language_code) > 1;
 				
 				// if we have a url language and this lang is valid
 				// no redirect, set current language and region in cookie
