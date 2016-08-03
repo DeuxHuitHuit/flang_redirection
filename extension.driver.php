@@ -10,7 +10,7 @@
 
 		public function install(){
 			if (!class_exists('FLang', false)) {
-				throw new Exception('The class Flang dont exist');
+				throw new Exception('The class Flang doesn\'t exist, you need to install the extension `Frontend Localisation` to solve this issue');
 			}
 		}
 
