@@ -9,7 +9,9 @@
 	Class extension_flang_redirection extends Extension{
 
 		public function install(){
-			return true;
+			if (!class_exists('FLang', false)) {
+				throw new Exception('The class Flang dont exist');
+			}
 		}
 
 		public function update($previousVersion=false) {
