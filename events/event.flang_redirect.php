@@ -157,7 +157,6 @@
 					catch (Exception $ex) {
 						// ignore
 						$cookie_language_code = null;
-						Symphony::Log()->pushExceptionToLog($ex, true);
 					}
 
 					if (strlen($cookie_language_code) > 0) {
