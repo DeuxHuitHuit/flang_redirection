@@ -5,11 +5,13 @@
 	 * 
 	This class is mostly a copy of https://github.com/klaftertief/language_redirect/blob/master/events/event.language_redirect.php
 	*/
-	
+
 	if(!defined("__IN_SYMPHONY__")) die("<h2>Error</h2><p>You cannot directly access this file</p>");
 
-	require_once(EXTENSIONS.'/frontend_localisation/lib/class.FLang.php');
-	
+	if (@file_exists(EXTENSIONS.'/frontend_localisation/lib/class.FLang.php')) {
+		require_once(EXTENSIONS.'/frontend_localisation/lib/class.FLang.php');
+	}
+
 	Class eventflang_redirect extends Event {
 
 		const ROOTELEMENT = 'flang-redirect';
