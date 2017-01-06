@@ -1,9 +1,9 @@
 <?php
-	/*
-	Copyight: Deux Huit Huit 2012-2016
-	License: MIT, see the LICENCE file
+	/**
+	 * Copyright: Deux Huit Huit 2012-2017
+	 * License: MIT, see the LICENCE file
 	 * 
-	This class is mostly a copy of https://github.com/klaftertief/language_redirect/blob/master/events/event.language_redirect.php
+	 * This class is mostly a copy of https://github.com/klaftertief/language_redirect/blob/master/events/event.language_redirect.php
 	*/
 
 	if(!defined("__IN_SYMPHONY__")) die("<h2>Error</h2><p>You cannot directly access this file</p>");
@@ -12,7 +12,7 @@
 		require_once(EXTENSIONS.'/frontend_localisation/lib/class.FLang.php');
 	}
 
-	Class eventflang_redirect extends Event {
+	class eventflang_redirect extends Event {
 
 		const ROOTELEMENT = 'flang-redirect';
 
@@ -26,7 +26,7 @@
 					'email' => 'open-source (at) deuxhuithuit (dot) com'
 				),
 				'version' => '2.0.0',
-				'release-date' => '2016-07-07',
+				'release-date' => '2017-01-06',
 				'trigger-condition' => ''
 			);
 		}
