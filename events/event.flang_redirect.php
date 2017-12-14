@@ -55,6 +55,11 @@
 				return;
 			}
 
+			// Always define the XSTL variable
+			if (!isset(Frontend::Page()->_param['current-language'])) {
+				Frontend::Page()->_param['current-language'] = '';
+			}
+
 			// Abort if the page is in an erroneous state
 			if (Frontend::instance()->getException() != null) {
 				return;
